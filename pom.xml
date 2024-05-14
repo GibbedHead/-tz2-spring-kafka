@@ -11,6 +11,7 @@
     <modules>
         <module>monitored-app</module>
         <module>metrics-producer</module>
+        <module>metrics-consumer</module>
     </modules>
 	
 	<properties>
