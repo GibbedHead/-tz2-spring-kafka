@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.actuate.metrics.MetricsEndpoint;
 import org.springframework.stereotype.Component;
+import ru.chaplyginma.monitoredapp.metrics.exception.InvalidMetricException;
 
 import java.util.List;
 
@@ -13,9 +14,11 @@ import java.util.List;
 public class MetricsFetcher {
     private final MetricsEndpoint metricsEndpoint;
 
-    public void getCPUUsageFromActuator() {
-        MetricsEndpoint.MetricDescriptor response = metricsEndpoint.metric("system.cpu.usage", null);
-
-        log.info(response.toString());
+    public double getMetricFromActuator(String metricName) throws InvalidMetricException {
+        List<MetricsEndpoint.Sample> metric = metricsEndpoint.metric(metricName, null).getMeasurements();
+        if (metric.isEmpty() || metric.get(0) == null) {
+            throw new InvalidMetricException(String.format("No '%s' metric found", metric));
+        }
+        return metric.get(0).getValue();
     }
 }
