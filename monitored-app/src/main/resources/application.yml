@@ -1,0 +1,17 @@
+app:
+    monitored:
+        metrics: disk.free,process.cpu.usage,jvm.memory.used
+management:
+    endpoints:
+        web:
+            exposure:
+                include: metrics
+    server:
+        port: 11000
+metricsproducer:
+    api-url: http://localhost:10020/metrics
+server:
+    port: 10010
+spring:
+    application:
+        name: monitored-app
