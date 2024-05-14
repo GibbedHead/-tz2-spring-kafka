@@ -1,5 +1,12 @@
 server:
-    port: 10020
+  port: 10020
 spring:
-    application:
-        name: metrics-producer
+  application:
+    name: metrics-producer
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+app:
+  kafka:
+    topic: metrics
