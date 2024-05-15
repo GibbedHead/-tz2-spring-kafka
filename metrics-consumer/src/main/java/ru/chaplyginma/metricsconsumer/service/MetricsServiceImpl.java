@@ -6,11 +6,14 @@ import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
+import ru.chaplyginma.metricsconsumer.dto.MetricResponseDto;
 import ru.chaplyginma.metricsconsumer.exception.model.InvalidMetricsException;
 import ru.chaplyginma.metricsconsumer.mapper.MetricsMapper;
 import ru.chaplyginma.metricsconsumer.repository.MetricsRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,6 +25,7 @@ public class MetricsServiceImpl implements MetricsService {
     private final MetricsMapper metricsMapper = Mappers.getMapper(MetricsMapper.class);
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
+    @Transactional
     @Override
     public void save(AddMetricDto addMetricDto) {
         Set<ConstraintViolation<AddMetricDto>> violations = validator.validate(addMetricDto);
@@ -45,8 +49,18 @@ public class MetricsServiceImpl implements MetricsService {
         );
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<String> getUniqueMetricNames() {
         return metricsRepository.findDistinctMetricNames();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<MetricResponseDto> getMetricsByName(String metricName, LocalDateTime startDate, LocalDateTime endDate) {
+        return metricsRepository.findMetricsByNameAndOptionalDateRange(metricName, startDate, endDate)
+                .stream()
+                .map(metricsMapper::metricToMetricResponseDto)
+                .collect(Collectors.toList());
     }
 }
