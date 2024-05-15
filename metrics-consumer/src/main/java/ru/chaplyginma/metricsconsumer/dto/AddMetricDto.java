@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AddMetricsDto {
+public class AddMetricDto {
     @NotBlank
     String metricName;
     Double value;

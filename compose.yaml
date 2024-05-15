@@ -31,5 +31,14 @@ services:
     volumes:
       - kafka_gorch:/var/lib/kafka/data
 
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: metrics
+      POSTGRES_PASSWORD: metrics
+      POSTGRES_USER: metrics
+    ports:
+      - 10001:5432
+
 volumes:
   kafka_gorch:

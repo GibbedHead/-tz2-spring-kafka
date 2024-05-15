@@ -1,8 +1,8 @@
 package ru.chaplyginma.metricsconsumer.service;
 
-import ru.chaplyginma.metricsconsumer.dto.AddMetricsDto;
-import ru.chaplyginma.metricsconsumer.model.Metrics;
+import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
+import ru.chaplyginma.metricsconsumer.model.Metric;
 
 public interface MetricsService {
-    Metrics save(AddMetricsDto addMetricsDto);
+    Metric save(AddMetricDto addMetricDto);
 }

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import ru.chaplyginma.metricsconsumer.dto.AddMetricsDto;
+import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
 
 @Service
 @Slf4j
@@ -13,8 +13,8 @@ public class MetricsKafkaListener {
     private final MetricsService metricsService;
 
     @KafkaListener(id = "metricsGroup", topics = "metrics")
-    public void listenMetrics(AddMetricsDto addMetricsDto) {
-        log.info("Listened add metrics: {}", addMetricsDto);
-        metricsService.save(addMetricsDto);
+    public void listenMetrics(AddMetricDto addMetricDto) {
+        log.info("Listened add metrics: {}", addMetricDto);
+        metricsService.save(addMetricDto);
     }
 }
