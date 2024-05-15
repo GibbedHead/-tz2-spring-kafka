@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: metrics-producer
+  config:
+    import: file:.env[.properties]
   kafka:
     bootstrap-servers: localhost:29092
     producer:
