@@ -1,6 +1,13 @@
 spring:
   application:
     name: metrics-consumer
+  config:
+    import: file:.env[.properties]
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=${POSTGRES_CHARSET}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   kafka:
     bootstrap-servers: localhost:29092
     consumer:
