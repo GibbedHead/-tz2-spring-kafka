@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
 import ru.chaplyginma.metricsconsumer.exception.model.InvalidMetricsException;
 import ru.chaplyginma.metricsconsumer.mapper.MetricsMapper;
-import ru.chaplyginma.metricsconsumer.model.Metric;
 import ru.chaplyginma.metricsconsumer.repository.MetricsRepository;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,7 +23,7 @@ public class MetricsServiceImpl implements MetricsService {
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     @Override
-    public Metric save(AddMetricDto addMetricDto) {
+    public void save(AddMetricDto addMetricDto) {
         Set<ConstraintViolation<AddMetricDto>> violations = validator.validate(addMetricDto);
         if (!violations.isEmpty()) {
             throw new InvalidMetricsException(
@@ -38,12 +38,15 @@ public class MetricsServiceImpl implements MetricsService {
                             )
             );
         }
-        return metricsRepository.save(
+        metricsRepository.save(
                 metricsMapper.addMetricDtoToMetric(
                         addMetricDto
                 )
         );
     }
 
-
+    @Override
+    public List<String> getUniqueMetricNames() {
+        return metricsRepository.findDistinctMetricNames();
+    }
 }

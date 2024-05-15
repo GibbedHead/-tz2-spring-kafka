@@ -1,8 +1,11 @@
 package ru.chaplyginma.metricsconsumer.service;
 
 import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
-import ru.chaplyginma.metricsconsumer.model.Metric;
+
+import java.util.List;
 
 public interface MetricsService {
-    Metric save(AddMetricDto addMetricDto);
+    void save(AddMetricDto addMetricDto);
+
+    List<String> getUniqueMetricNames();
 }
