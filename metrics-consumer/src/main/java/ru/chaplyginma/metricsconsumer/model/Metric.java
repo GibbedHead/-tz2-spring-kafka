@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Metric {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @SequenceGenerator(name = "seq", sequenceName = "metrics_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "seq", sequenceName = "metric_id_seq", allocationSize = 1)
     Long id;
     String metricName;
     Double value;
