@@ -35,5 +35,32 @@ services:
     volumes:
       - ./metrics-consumer/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
+  monitored-app:
+    build:
+      context: ./
+      dockerfile: monitored-app/.docker/Dockerfile
+    container_name: monitored-app
+    depends_on:
+      - metrics-producer
+
+  metrics-producer:
+    build:
+      context: ./
+      dockerfile: metrics-producer/.docker/Dockerfile
+    container_name: metrics-producer
+    depends_on:
+      - kafka
+
+  metrics-consumer:
+    build:
+      context: ./
+      dockerfile: metrics-consumer/.docker/Dockerfile
+    container_name: metrics-consumer
+    depends_on:
+      - kafka
+      - postgres
+    ports:
+      - ${METRICS_CONSUMER_PORT}:${METRICS_CONSUMER_PORT}
+
 volumes:
   kafka_gorch:
