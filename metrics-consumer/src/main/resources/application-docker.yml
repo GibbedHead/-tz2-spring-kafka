@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/metrics?serverVersion=16&charset=utf8
+  kafka:
+    bootstrap-servers: kafka:9092

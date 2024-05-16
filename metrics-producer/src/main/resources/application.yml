@@ -1,12 +1,10 @@
 server:
-  port: ${METRICS_PRODUCER_PORT}
+  port: 10020
 spring:
   application:
     name: metrics-producer
-  config:
-    import: file:./.env[.properties]
   kafka:
-    bootstrap-servers: ${KAFKA_H_HOST}:${KAFKA_EXTERNAL_PORT}
+    bootstrap-servers: localhost:10002
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 app:

@@ -1,15 +1,13 @@
 spring:
   application:
     name: metrics-consumer
-  config:
-    import: file:./.env[.properties]
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=${POSTGRES_CHARSET}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://localhost:10001/metrics?serverVersion=16&charset=utf8
+    username: metrics
+    password: metrics
   kafka:
-    bootstrap-servers: ${KAFKA_H_HOST}:${KAFKA_EXTERNAL_PORT}
+    bootstrap-servers: localhost:10002
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
@@ -22,7 +20,7 @@ spring:
           trusted:
             packages: ru.chaplyginma.metricsconsumer.dto
 server:
-  port: ${METRICS_CONSUMER_PORT}
+  port: 10000
 app:
   kafka:
     topic: metrics

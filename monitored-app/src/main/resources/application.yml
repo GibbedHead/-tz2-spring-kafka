@@ -7,13 +7,11 @@ management:
             exposure:
                 include: metrics
     server:
-        port: ${MONITORED_APP_ACTUATOR_PORT}
+        port: 10011
 metricsproducer:
-    api-url: http://${METRICS_PRODUCER_HOST}:${METRICS_PRODUCER_PORT}/metrics
+    api-url: http://localhost:10020/metrics
 server:
-    port: ${MONITORED_APP_PORT}
+    port: 10010
 spring:
     application:
         name: monitored-app
-    config:
-        import: file:./.env[.properties]

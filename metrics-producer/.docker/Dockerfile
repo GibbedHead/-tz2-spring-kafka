@@ -5,5 +5,5 @@ RUN addgroup -S app && adduser -S app -G app
 USER app
 
 COPY metrics-producer/target/*.jar app.jar
-COPY .env .env
+
 ENTRYPOINT ["java","-jar","/app.jar"]
