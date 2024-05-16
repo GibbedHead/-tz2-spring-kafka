@@ -1,0 +1,92 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:10000
+  description: Generated server url
+tags:
+- name: Metrics
+  description: Endpoints for getting metrics
+paths:
+  /metrics:
+    get:
+      tags:
+      - Metrics
+      summary: Get unique metric names
+      description: Returns a list of unique metric names
+      operationId: getUniqueMetricNames
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                example:
+                - CPU Usage
+                - Disk free
+  /metrics/{metricName}:
+    get:
+      tags:
+      - Metrics
+      summary: Get metrics by name
+      description: Retrieve metrics by metric name with optional date range filter
+      operationId: getMetrics
+      parameters:
+      - name: metricName
+        in: path
+        description: Name of the metric
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Start date for filtering metrics (optional)
+        required: false
+        schema:
+          type: string
+          format: date-time
+        example: 2023-01-01T00:00:00
+      - name: endDate
+        in: query
+        description: End date for filtering metrics (optional)
+        required: false
+        schema:
+          type: string
+          format: date-time
+        example: 2023-12-31T23:59:59
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MetricResponseDto'
+        "400":
+          description: Invalid parameters supplied
+components:
+  schemas:
+    MetricResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the metric
+          format: int64
+          example: 1
+        metricName:
+          type: string
+          description: Name of the metric
+          example: cpu_usage
+        value:
+          type: number
+          description: Value of the metric
+          format: double
+          example: 75.5
+        timestamp:
+          type: string
+          description: Timestamp of the metric value
+          format: date-time
