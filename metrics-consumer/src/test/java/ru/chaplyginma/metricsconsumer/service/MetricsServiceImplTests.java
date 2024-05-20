@@ -54,15 +54,15 @@ public class MetricsServiceImplTests {
     public void whenGetMetricsByName_thenReturnMetricResponseDtoList() {
         given(metricsRepository.findMetricsByNameAndOptionalDateRange(any(), any(), any()))
                 .willReturn(List.of(
-                        TestData.getIthMetric(1),
-                        TestData.getIthMetric(2),
-                        TestData.getIthMetric(3)
+                        TestData.getIthMetric(1, "Some metric"),
+                        TestData.getIthMetric(2, "Some metric"),
+                        TestData.getIthMetric(3, "Some metric")
                 ));
 
         List<MetricResponseDto> metricResponseDtos = metricsService.getMetricsByName("Some metric", null, null);
 
         assertThat(metricResponseDtos).isNotEmpty();
-        assertThat(metricResponseDtos.get(0).getMetricName()).isEqualTo(TestData.getIthMetric(1).getMetricName());
+        assertThat(metricResponseDtos.get(0).getMetricName()).isEqualTo(TestData.getIthMetric(1, "Some metric").getMetricName());
     }
 
 

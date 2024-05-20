@@ -22,10 +22,10 @@ public class TestData {
         return responseDto;
     }
 
-    public static Metric getIthMetric(int i) {
+    public static Metric getIthMetric(int i, String metricName) {
         Metric metric = new Metric();
         metric.setId((long) i);
-        metric.setMetricName("Some metric");
+        metric.setMetricName(metricName);
         metric.setMetricValue((double) i);
         metric.setMetricTimestamp(LocalDateTime.now());
 
@@ -35,13 +35,6 @@ public class TestData {
     public static Metric getValidNewMetric() {
         Metric metric = new Metric();
         metric.setMetricName("Some metric");
-        metric.setMetricValue(1.0);
-        metric.setMetricTimestamp(LocalDateTime.now());
-        return metric;
-    }
-
-    public static Metric getNullNameNewMetric() {
-        Metric metric = new Metric();
         metric.setMetricValue(1.0);
         metric.setMetricTimestamp(LocalDateTime.now());
         return metric;
