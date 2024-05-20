@@ -1,9 +1,7 @@
 spring:
-  application:
-    name: metrics-consumer
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:10001/metrics?serverVersion=16&charset=utf8
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:metrics
     username: metrics
     password: metrics
   kafka:
@@ -19,8 +17,6 @@ spring:
         json:
           trusted:
             packages: ru.chaplyginma.addmetricsdto.dto
-server:
-  port: 10000
 app:
   kafka:
     topic: metrics

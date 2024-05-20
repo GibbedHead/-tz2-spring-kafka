@@ -1,6 +1,5 @@
 package ru.chaplyginma.metricsconsumer.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -34,8 +33,6 @@ public class MetricsControllerTests {
 
     @MockBean
     private MetricsService metricsService;
-
-    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     public void whenGetUniqueMetricNames_ThenReturnMetricNamesList() throws Exception {
