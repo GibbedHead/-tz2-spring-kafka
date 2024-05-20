@@ -3,16 +3,16 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: http://localhost:10000
-  description: Generated server url
+  - url: http://localhost:10000
+    description: Generated server url
 tags:
-- name: Metrics
-  description: Endpoints for getting metrics
+  - name: Metrics
+    description: Endpoints for getting metrics
 paths:
   /metrics:
     get:
       tags:
-      - Metrics
+        - Metrics
       summary: Get unique metric names
       description: Returns a list of unique metric names
       operationId: getUniqueMetricNames
@@ -24,39 +24,41 @@ paths:
               schema:
                 type: array
                 example:
-                - CPU Usage
-                - Disk free
+                  - CPU Usage
+                  - Disk free
   /metrics/{metricName}:
     get:
       tags:
-      - Metrics
+        - Metrics
       summary: Get metrics by name
       description: Retrieve metrics by metric name with optional date range filter
       operationId: getMetrics
       parameters:
-      - name: metricName
-        in: path
-        description: Name of the metric
-        required: true
-        schema:
-          type: string
-      - name: startDate
-        in: query
-        description: Start date for filtering metrics (optional)
-        required: false
-        schema:
-          type: string
-          format: date-time
-        example: 2023-01-01T00:00:00
-      - name: endDate
-        in: query
-        description: End date for filtering metrics (optional)
-        required: false
-        schema:
-          type: string
-          format: date-time
-        example: 2023-12-31T23:59:59
+        - name: metricName
+          in: path
+          description: Name of the metric
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          description: Start date for filtering metrics (optional)
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: 2023-01-01T00:00:00
+        - name: endDate
+          in: query
+          description: End date for filtering metrics (optional)
+          required: false
+          schema:
+            type: string
+            format: date-time
+          example: 2023-12-31T23:59:59
       responses:
+        "400":
+          description: Invalid parameters supplied
         "200":
           description: Successful operation
           content:
@@ -65,8 +67,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/MetricResponseDto'
-        "400":
-          description: Invalid parameters supplied
 components:
   schemas:
     MetricResponseDto:

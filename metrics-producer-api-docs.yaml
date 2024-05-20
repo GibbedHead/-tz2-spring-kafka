@@ -3,16 +3,16 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: http://localhost:10020
-  description: Generated server url
+  - url: http://localhost:10020
+    description: Generated server url
 tags:
-- name: Metrics
-  description: Endpoint for managing metrics
+  - name: Metrics
+    description: Endpoint for managing metrics
 paths:
   /metrics:
     post:
       tags:
-      - Metrics
+        - Metrics
       summary: Add Metrics
       description: Add new metrics data to kafka
       operationId: postMetrics
@@ -20,7 +20,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddMetricsDto'
+              $ref: '#/components/schemas/AddMetricDto'
         required: true
       responses:
         "500":
@@ -43,10 +43,10 @@ paths:
                 type: string
 components:
   schemas:
-    AddMetricsDto:
+    AddMetricDto:
       required:
-      - metricName
-      - timestamp
+        - metricName
+        - timestamp
       type: object
       properties:
         metricName:
