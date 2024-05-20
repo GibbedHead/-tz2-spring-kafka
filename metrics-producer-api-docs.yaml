@@ -46,19 +46,21 @@ components:
     AddMetricDto:
       required:
         - metricName
-        - timestamp
+        - metricTimestamp
       type: object
       properties:
         metricName:
+          maxLength: 255
+          minLength: 0
           type: string
           description: Name of the metric
           example: CPU Usage
-        value:
+        metricValue:
           type: number
           description: Value of the metric
           format: double
           example: 0.75
-        timestamp:
+        metricTimestamp:
           type: string
           description: Timestamp of the metric data
           format: date-time
