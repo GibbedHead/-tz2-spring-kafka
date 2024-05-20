@@ -24,16 +24,16 @@ public class MetricsMapperTests {
     public void givenAddMetricDto_whenMapToMetric_thenReturnMetric() {
         AddMetricDto addMetricDto = AddMetricDto.builder()
                 .metricName("Some metric")
-                .value(0.0)
-                .timestamp(LocalDateTime.now())
+                .metricValue(0.0)
+                .metricTimestamp(LocalDateTime.now())
                 .build();
 
         Metric metric = metricsMapper.addMetricDtoToMetric(addMetricDto);
 
         assertThat(metric).isNotNull();
         assertThat(metric.getMetricName()).isEqualTo("Some metric");
-        assertThat(metric.getValue()).isEqualTo(addMetricDto.getValue());
-        assertThat(metric.getTimestamp()).isEqualTo(addMetricDto.getTimestamp());
+        assertThat(metric.getMetricValue()).isEqualTo(addMetricDto.getMetricValue());
+        assertThat(metric.getMetricTimestamp()).isEqualTo(addMetricDto.getMetricTimestamp());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class MetricsMapperTests {
 
         assertThat(responseDto).isNotNull();
         assertThat(responseDto.getMetricName()).isEqualTo("Some metric");
-        assertThat(responseDto.getValue()).isEqualTo(metric.getValue());
-        assertThat(responseDto.getTimestamp()).isEqualTo(metric.getTimestamp());
+        assertThat(responseDto.getMetricValue()).isEqualTo(metric.getMetricValue());
+        assertThat(responseDto.getMetricTimestamp()).isEqualTo(metric.getMetricTimestamp());
     }
 }

@@ -20,8 +20,8 @@ public class AddMetricDto {
     @Schema(description = "Name of the metric", example = "CPU Usage")
     String metricName;
     @Schema(description = "Value of the metric", example = "0.75")
-    Double value;
+    Double metricValue;
     @NotNull
     @Schema(description = "Timestamp of the metric data", example = "2024-05-16T12:00:00")
-    LocalDateTime timestamp;
+    LocalDateTime metricTimestamp;
 }

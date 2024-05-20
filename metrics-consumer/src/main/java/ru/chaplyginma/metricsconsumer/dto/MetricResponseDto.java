@@ -15,7 +15,7 @@ public class MetricResponseDto {
     @Schema(description = "Name of the metric", example = "cpu_usage")
     String metricName;
     @Schema(description = "Value of the metric", example = "75.5")
-    Double value;
+    Double metricValue;
     @Schema(description = "Timestamp of the metric value", example = "2023-05-16T11:57:43")
-    LocalDateTime timestamp;
+    LocalDateTime metricTimestamp;
 }

@@ -18,6 +18,6 @@ public class Metric {
     @SequenceGenerator(name = "seq", sequenceName = "metric_id_seq", allocationSize = 1)
     Long id;
     String metricName;
-    Double value;
-    LocalDateTime timestamp;
+    Double metricValue;
+    LocalDateTime metricTimestamp;
 }

@@ -58,7 +58,7 @@ public class MetricsControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[1].value").value(2.0))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].metricValue").value(2.0))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[2].metricName").value("Some metric"));
     }
 

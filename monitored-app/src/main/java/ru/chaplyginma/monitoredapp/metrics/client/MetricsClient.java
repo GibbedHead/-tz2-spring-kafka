@@ -21,8 +21,8 @@ public class MetricsClient {
     public void postMetric(String metricName, Double metricValue) {
         AddMetricDto addMetricDto = AddMetricDto.builder()
                 .metricName(metricName)
-                .value(metricValue)
-                .timestamp(LocalDateTime.now())
+                .metricValue(metricValue)
+                .metricTimestamp(LocalDateTime.now())
                 .build();
         WebClient webClient = WebClient.create(metricsProducerApiUrl);
         webClient

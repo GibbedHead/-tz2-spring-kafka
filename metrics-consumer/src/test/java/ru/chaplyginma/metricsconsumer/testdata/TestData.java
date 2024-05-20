@@ -16,8 +16,8 @@ public class TestData {
         MetricResponseDto responseDto = new MetricResponseDto();
         responseDto.setId((long) i);
         responseDto.setMetricName("Some metric");
-        responseDto.setValue((double) i);
-        responseDto.setTimestamp(LocalDateTime.now());
+        responseDto.setMetricValue((double) i);
+        responseDto.setMetricTimestamp(LocalDateTime.now());
 
         return responseDto;
     }
@@ -26,17 +26,32 @@ public class TestData {
         Metric metric = new Metric();
         metric.setId((long) i);
         metric.setMetricName("Some metric");
-        metric.setValue((double) i);
-        metric.setTimestamp(LocalDateTime.now());
+        metric.setMetricValue((double) i);
+        metric.setMetricTimestamp(LocalDateTime.now());
 
+        return metric;
+    }
+
+    public static Metric getValidNewMetric() {
+        Metric metric = new Metric();
+        metric.setMetricName("Some metric");
+        metric.setMetricValue(1.0);
+        metric.setMetricTimestamp(LocalDateTime.now());
+        return metric;
+    }
+
+    public static Metric getNullNameNewMetric() {
+        Metric metric = new Metric();
+        metric.setMetricValue(1.0);
+        metric.setMetricTimestamp(LocalDateTime.now());
         return metric;
     }
 
     public static AddMetricDto getValidAddMetricDto() {
         return AddMetricDto.builder()
                 .metricName("Some metric")
-                .value(1.0)
-                .timestamp(LocalDateTime.now())
+                .metricValue(1.0)
+                .metricTimestamp(LocalDateTime.now())
                 .build();
     }
 
@@ -44,16 +59,16 @@ public class TestData {
         Metric metric = new Metric();
         metric.setId(1L);
         metric.setMetricName("Some metric");
-        metric.setValue(1.0);
-        metric.setTimestamp(LocalDateTime.now());
+        metric.setMetricValue(1.0);
+        metric.setMetricTimestamp(LocalDateTime.now());
         return metric;
     }
 
     public static AddMetricDto getBlankNameAddMetricDto() {
         return AddMetricDto.builder()
                 .metricName("")
-                .value(1.0)
-                .timestamp(LocalDateTime.now())
+                .metricValue(1.0)
+                .metricTimestamp(LocalDateTime.now())
                 .build();
     }
 }

@@ -13,8 +13,8 @@ public interface MetricsRepository extends JpaRepository<Metric, Long> {
     List<String> findDistinctMetricNames();
 
     @Query("SELECT m FROM Metric m WHERE m.metricName = :metricName " +
-            "AND (COALESCE(:startDate, m.timestamp) <= m.timestamp) " +
-            "AND (COALESCE(:endDate, m.timestamp) >= m.timestamp)")
+            "AND (COALESCE(:startDate, m.metricTimestamp) <= m.metricTimestamp) " +
+            "AND (COALESCE(:endDate, m.metricTimestamp) >= m.metricTimestamp)")
     List<Metric> findMetricsByNameAndOptionalDateRange(
             @Param("metricName") String metricName,
             @Param("startDate") LocalDateTime startDate,

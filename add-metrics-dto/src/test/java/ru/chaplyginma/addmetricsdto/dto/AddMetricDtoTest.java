@@ -17,8 +17,8 @@ public class AddMetricDtoTest {
     public void givenNullMetricName_whenValidate_thenNotValid() {
         AddMetricDto addMetricDto = AddMetricDto.builder()
                 .metricName(null)
-                .value(0.0)
-                .timestamp(LocalDateTime.now())
+                .metricValue(0.0)
+                .metricTimestamp(LocalDateTime.now())
                 .build();
 
         Set<ConstraintViolation<AddMetricDto>> violations = validator.validate(addMetricDto);
@@ -29,8 +29,8 @@ public class AddMetricDtoTest {
     public void givenBlankMetricName_whenValidate_thenNotValid() {
         AddMetricDto addMetricDto = AddMetricDto.builder()
                 .metricName(" ")
-                .value(0.0)
-                .timestamp(LocalDateTime.now())
+                .metricValue(0.0)
+                .metricTimestamp(LocalDateTime.now())
                 .build();
 
         Set<ConstraintViolation<AddMetricDto>> violations = validator.validate(addMetricDto);
@@ -41,8 +41,8 @@ public class AddMetricDtoTest {
     public void givenTooLongMetricName_whenValidate_thenNotValid() {
         AddMetricDto addMetricDto = AddMetricDto.builder()
                 .metricName("a".repeat(256))
-                .value(0.0)
-                .timestamp(LocalDateTime.now())
+                .metricValue(0.0)
+                .metricTimestamp(LocalDateTime.now())
                 .build();
 
         Set<ConstraintViolation<AddMetricDto>> violations = validator.validate(addMetricDto);
@@ -53,8 +53,8 @@ public class AddMetricDtoTest {
     public void givenNullTimestamp_whenValidate_thenNotValid() {
         AddMetricDto addMetricDto = AddMetricDto.builder()
                 .metricName("Some metric")
-                .value(0.0)
-                .timestamp(null)
+                .metricValue(0.0)
+                .metricTimestamp(null)
                 .build();
 
         Set<ConstraintViolation<AddMetricDto>> violations = validator.validate(addMetricDto);
