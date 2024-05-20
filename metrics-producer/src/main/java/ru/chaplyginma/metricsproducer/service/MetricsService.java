@@ -1,7 +1,8 @@
 package ru.chaplyginma.metricsproducer.service;
 
-import ru.chaplyginma.metricsproducer.dto.AddMetricsDto;
+
+import ru.chaplyginma.addmetricsdto.dto.AddMetricDto;
 
 public interface MetricsService {
-    String sendMetrics(AddMetricsDto addMetricsDto);
+    String sendMetrics(AddMetricDto addMetricDto);
 }

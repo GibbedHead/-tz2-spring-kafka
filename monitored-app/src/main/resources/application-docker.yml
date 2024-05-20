@@ -1,2 +1,2 @@
 metricsproducer:
-    api-url: http://metrics-producer:10020/metrics
+  api-url: http://metrics-producer:10020/metrics

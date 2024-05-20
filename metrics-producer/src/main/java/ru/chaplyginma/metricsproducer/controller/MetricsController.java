@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.chaplyginma.metricsproducer.dto.AddMetricsDto;
+import ru.chaplyginma.addmetricsdto.dto.AddMetricDto;
 import ru.chaplyginma.metricsproducer.service.MetricsService;
 
 @RestController
@@ -30,10 +30,10 @@ public class MetricsController {
             @ApiResponse(responseCode = "400", description = "Invalid input data")
     })
     public String postMetrics(
-            @Parameter(description = "Metrics data to add", required = true, schema = @Schema(implementation = AddMetricsDto.class))
-            @Valid @RequestBody AddMetricsDto addMetricsDto
+            @Parameter(description = "Metrics data to add", required = true, schema = @Schema(implementation = AddMetricDto.class))
+            @Valid @RequestBody AddMetricDto addMetricDto
     ) {
-        log.info("Received add metrics: {}", addMetricsDto);
-        return metricsService.sendMetrics(addMetricsDto);
+        log.info("Received add metrics: {}", addMetricDto);
+        return metricsService.sendMetrics(addMetricDto);
     }
 }

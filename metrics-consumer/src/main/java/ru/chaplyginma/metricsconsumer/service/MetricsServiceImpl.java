@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
+import ru.chaplyginma.addmetricsdto.dto.AddMetricDto;
 import ru.chaplyginma.metricsconsumer.dto.MetricResponseDto;
 import ru.chaplyginma.metricsconsumer.exception.model.InvalidMetricsException;
 import ru.chaplyginma.metricsconsumer.mapper.MetricsMapper;

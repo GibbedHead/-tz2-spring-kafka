@@ -12,6 +12,7 @@
         <module>monitored-app</module>
         <module>metrics-producer</module>
         <module>metrics-consumer</module>
+        <module>add-metrics-dto</module>
     </modules>
 	
 	<properties>

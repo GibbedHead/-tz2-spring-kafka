@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-import ru.chaplyginma.monitoredapp.metrics.dto.AddMetricsDto;
+import ru.chaplyginma.addmetricsdto.dto.AddMetricDto;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +19,7 @@ public class MetricsClient {
     private String metricsProducerApiUrl;
 
     public void postMetric(String metricName, Double metricValue) {
-        AddMetricsDto addMetricsDto = AddMetricsDto.builder()
+        AddMetricDto addMetricDto = AddMetricDto.builder()
                 .metricName(metricName)
                 .value(metricValue)
                 .timestamp(LocalDateTime.now())
@@ -29,7 +29,7 @@ public class MetricsClient {
                 .post()
                 .uri("")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(BodyInserters.fromValue(addMetricsDto))
+                .body(BodyInserters.fromValue(addMetricDto))
                 .retrieve()
                 .bodyToMono(String.class)
                 .subscribe(

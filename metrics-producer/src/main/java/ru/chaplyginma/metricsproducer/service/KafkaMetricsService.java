@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.chaplyginma.metricsproducer.dto.AddMetricsDto;
+import ru.chaplyginma.addmetricsdto.dto.AddMetricDto;
 import ru.chaplyginma.metricsproducer.exception.model.SendToKafkaException;
 
 import java.util.concurrent.ExecutionException;
@@ -19,9 +19,9 @@ public class KafkaMetricsService implements MetricsService {
     private String kafkaTopic;
 
     @Override
-    public String sendMetrics(AddMetricsDto addMetricsDto) {
+    public String sendMetrics(AddMetricDto addMetricDto) {
         try {
-            kafkaTemplate.send(kafkaTopic, addMetricsDto).get();
+            kafkaTemplate.send(kafkaTopic, addMetricDto).get();
             log.info("Metrics sent to Kafka successfully");
             return "Successfully sent to Kafka";
         } catch (InterruptedException | ExecutionException e) {

@@ -2,7 +2,7 @@ package ru.chaplyginma.metricsconsumer.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
+import ru.chaplyginma.addmetricsdto.dto.AddMetricDto;
 import ru.chaplyginma.metricsconsumer.dto.MetricResponseDto;
 import ru.chaplyginma.metricsconsumer.model.Metric;
 

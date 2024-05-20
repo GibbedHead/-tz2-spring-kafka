@@ -1,17 +1,19 @@
-package ru.chaplyginma.metricsproducer.dto;
+package ru.chaplyginma.addmetricsdto.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AddMetricsDto {
+public class AddMetricDto {
     @NotBlank
     @Schema(description = "Name of the metric", example = "CPU Usage")
     String metricName;

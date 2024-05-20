@@ -1,6 +1,6 @@
 package ru.chaplyginma.metricsconsumer.service;
 
-import ru.chaplyginma.metricsconsumer.dto.AddMetricDto;
+import ru.chaplyginma.addmetricsdto.dto.AddMetricDto;
 import ru.chaplyginma.metricsconsumer.dto.MetricResponseDto;
 
 import java.time.LocalDateTime;
