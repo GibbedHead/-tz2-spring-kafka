@@ -62,6 +62,8 @@ services:
       - kafka
     environment:
       SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - 10020:10020
 
   metrics-consumer:
     build:
